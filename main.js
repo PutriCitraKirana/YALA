@@ -60,8 +60,8 @@ async function claimDailyPoints(account) {
     const pointsResponse = await axios.get(POINTS_URL, { headers });
     const pointsData = pointsResponse.data;
 
-    console.log(`\nBerries Balance: ${pointsData.totalPoints}`.yellow);
-    console.log(`Rank: ${pointsData.rank}`.blue);
+    console.log(`\nBerries Balance: ${pointsData.data.totalPoints}`.yellow);
+    console.log(`Rank: ${pointsData.data.rank}`.blue);
   } catch (error) {
     console.log(`[Error] Failed to claim for ${account.name}: ${error.message}`.red);
   }
