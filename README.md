@@ -10,9 +10,9 @@ this script doesn't require your seed or private key.
 
 ```git clone https://github.com/Aniketcrypto/YALA && cd YALA```
 
-```npm install axios colors```
+```pip install colorama requests```
 
-```node main.js```
+```python3 main.py```
 
 i hope you enjoy this script 😄😄
 
