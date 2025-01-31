@@ -10,7 +10,7 @@ this script doesn't require your seed or private key.
 
 ```git clone https://github.com/Aniketcrypto/YALA && cd YALA```
 
-```npm install axios```
+```npm install axios colors```
 
 ```node main.js```
 
