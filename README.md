@@ -1,4 +1,4 @@
-# YALA DAILY CHECK_IN script
+# YALA DAILY CHECK-IN script
 
 this script is made only for education purpose and this script is free to use if someone try to sell you this script kindly igonre them and block them.
 
