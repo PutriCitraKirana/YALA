@@ -84,7 +84,7 @@ def show_menu():
                 claim_daily_points(account)
 
         elif option == "3":
-           print(Fore.LIGHTBLUE_EX + "Starting 24-hour scheduler... Press Ctrl+C to stop.")
+            print(Fore.LIGHTBLUE_EX + "Starting 24-hour scheduler... Press Ctrl+C to stop.")
             try:
                 while True:
                     accounts = read_auth_file()
