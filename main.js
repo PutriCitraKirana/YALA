@@ -1,6 +1,7 @@
 const fs = require('fs');
 const axios = require('axios');
 const readline = require('readline');
+const colors = require('colors'); // Color module
 const { exec } = require('child_process');
 
 const AUTH_FILE = 'auth.txt';
@@ -22,9 +23,9 @@ function clearScreen() {
 async function displayBanner() {
   try {
     const response = await axios.get(BANNER_URL);
-    console.log(response.data);
+    console.log(response.data.green);
   } catch (error) {
-    console.log('Welcome to Yala Claim Script!');
+    console.log('Welcome to Yala Claim Script!'.cyan);
   }
 }
 
@@ -41,7 +42,7 @@ function readAuthFile() {
 // Write new account to file
 function writeAuthFile(name, token) {
   fs.appendFileSync(AUTH_FILE, `${name}|${token}\n`);
-  console.log(`Account ${name} added successfully!`);
+  console.log(`Account ${name} added successfully!`.green);
 }
 
 // Claim daily points
@@ -53,33 +54,33 @@ async function claimDailyPoints(account) {
     };
 
     const response = await axios.post(CLAIM_URL, {}, { headers });
-    console.log(`[Success] Daily check-in for ${account.name}.`);
+    console.log(`[Success] Daily check-in for ${account.name}.`.brightGreen);
 
     // Fetch balance and rank
     const pointsResponse = await axios.get(POINTS_URL, { headers });
     const pointsData = pointsResponse.data;
 
-    console.log(`\nBerries Balance: ${pointsData.totalPoints}`);
-    console.log(`Rank: ${pointsData.rank}\n`);
+    console.log(`\nBerries Balance: ${pointsData.totalPoints}`.yellow);
+    console.log(`Rank: ${pointsData.rank}`.blue);
   } catch (error) {
-    console.log(`[Error] Failed to claim for ${account.name}: ${error.message}`);
+    console.log(`[Error] Failed to claim for ${account.name}: ${error.message}`.red);
   }
 }
 
 // Show main menu
 function showMenu() {
-  console.log('\n1. Add Account');
-  console.log('2. Run Once');
-  console.log('3. Claim Every 24h');
-  console.log('4. Exit');
+  console.log('\n1. Add Account'.cyan);
+  console.log('2. Run Once'.cyan);
+  console.log('3. Claim Every 24h'.cyan);
+  console.log('4. Exit'.cyan);
 
-  rl.question('Select an option: ', async option => {
+  rl.question('Select an option: '.magenta, async option => {
     clearScreen();
 
     switch (option) {
       case '1':
-        rl.question('Enter account name: ', name => {
-          rl.question('Enter auth token: ', token => {
+        rl.question('Enter account name: '.yellow, name => {
+          rl.question('Enter auth token: '.yellow, token => {
             writeAuthFile(name, token);
             showMenu();
           });
@@ -95,7 +96,7 @@ function showMenu() {
         break;
 
       case '3':
-        console.log('Starting 24-hour scheduler... Press Ctrl+C to stop.');
+        console.log('Starting 24-hour scheduler... Press Ctrl+C to stop.'.brightBlue);
         setInterval(async () => {
           const accounts = readAuthFile();
           for (const account of accounts) {
@@ -105,12 +106,12 @@ function showMenu() {
         break;
 
       case '4':
-        console.log('Exiting...');
+        console.log('Exiting...'.red);
         rl.close();
         break;
 
       default:
-        console.log('Invalid option. Try again.');
+        console.log('Invalid option. Try again.'.red);
         showMenu();
     }
   });
