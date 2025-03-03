@@ -13,13 +13,3 @@ this script doesn't require your seed or private key.
 ```pip install colorama requests```
 
 ```python3 main.py```
-
-i hope you enjoy this script 😄😄
-
-get me a coffee 🥰 
-
-SOLANA ```AyE2QqaN32LFDay2p5jsNb6HKveWTP7VTeBpVXJcL9Md```
-
-EVM ```0x9e5ff9dAddf406782589310baf51d929BEf1e75F```
-
-Thanks!
